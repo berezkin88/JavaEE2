@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -6,8 +7,9 @@ import java.util.Map;
  */
 public interface DAOInterface {
 
-    void create(String tableName, Map<?,?> param);
+    void createDatabase(String databaseName) throws SQLException;
+    void createTableDevelopers2() throws SQLException;
     List<?> read(String tableName);
-    void update(String tableName, Map<?,?> param);
-    void delete(String tableName, Map<?,?> param);
+    void update(String tableName, Map<?,?> params);
+    void delete(String tableName, Map<?,?> params);
 }
