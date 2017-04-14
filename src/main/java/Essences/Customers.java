@@ -1,3 +1,5 @@
+package Essences;
+
 /**
  * Created by Alexander on 08/04/2017.
  */
@@ -8,7 +10,7 @@ public class Customers {
 
     @Override
     public String toString() {
-        return "Customers{" +
+        return "Essences.Customers{" +
                 "customer_id=" + customer_id +
                 ", customer_name='" + customer_name + '\'' +
                 '}';

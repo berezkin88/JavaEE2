@@ -1,3 +1,5 @@
+package Essences;
+
 /**
  * Created by Alexander on 08/04/2017.
  */
@@ -9,7 +11,7 @@ public class Skills {
 
     @Override
     public String toString() {
-        return "Skills{" +
+        return "Essences.Skills{" +
                 "skill_id=" + skill_id +
                 ", area_of_skill='" + area_of_skill + '\'' +
                 ", developer_id=" + developer_id +

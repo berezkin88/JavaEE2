@@ -1,3 +1,5 @@
+package Essences;
+
 /**
  * Created by Alexander on 08/04/2017.
  */
@@ -9,7 +11,7 @@ public class Companies {
 
     @Override
     public String toString() {
-        return "Companies{" +
+        return "Essences.Companies{" +
                 "company_id=" + company_id +
                 ", company_name='" + company_name + '\'' +
                 ", number_of_empoyees=" + number_of_empoyees +

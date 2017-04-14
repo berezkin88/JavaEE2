@@ -1,3 +1,5 @@
+package Essences;
+
 /**
  * Created by Alexander on 08/04/2017.
  */
@@ -11,7 +13,7 @@ public class Developers {
 
     @Override
     public String toString() {
-        return "Developers{" +
+        return "Essences.Developers{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

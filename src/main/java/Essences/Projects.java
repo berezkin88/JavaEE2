@@ -1,3 +1,5 @@
+package Essences;
+
 /**
  * Created by Alexander on 08/04/2017.
  */
@@ -11,7 +13,7 @@ public class Projects {
 
     @Override
     public String toString() {
-        return "Projects{" +
+        return "Essences.Projects{" +
                 "project_id=" + project_id +
                 ", project_title='" + project_title + '\'' +
                 ", company_id=" + company_id +
