@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,8 @@ public class DAOImp implements DAOInterface {
     }
 
     @Override
-    public void createTableDevelopers2() throws SQLException {
+    public void createTableDevelopers2() throws SQLException
+    {
         try {
             Connection();
 
@@ -81,23 +83,115 @@ public class DAOImp implements DAOInterface {
 
     }
 
-    @Override
-    public List<?> read(String tableName) {
-        return null;
-    }
-
-    public List<?> read(String tableName, Map<?,?> params) {
-        return null;
-    }
 
     @Override
-    public void update(String tableName, Map<?,?> params) {
+    public List<?> readAll(String tableName) throws SQLException {
+        List<?> result = new ArrayList<>();
 
+        try {
+            Connection();
+
+            System.out.println("Reading from " + tableName + " table");
+            statement = connection.createStatement();
+
+            String SQL = "SELECT * FROM " + tableName;
+
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("Operation failed");
+            e.printStackTrace();
+        } finally {
+            if (statement!=null){
+                statement.close();
+            }
+            if (connection!=null){
+                connection.close();
+            }
+        }
+        return result;
+    }
+
+    public List<?> read(String rowName, String tableName) throws SQLException{
+        List<?> result = new ArrayList<>();
+
+        try {
+            Connection();
+
+            System.out.println("Reading from " + tableName + " table");;
+            statement = connection.createStatement();
+
+            String SQL = "SELECT " + rowName + " FROM " + tableName;
+
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+        } catch (Exception e) {
+            System.out.println("Operation failed");
+            throw new RuntimeException(e);
+        } finally {
+            if (statement!=null){
+                statement.close();
+            }
+            if (connection!=null){
+                connection.close();
+            }
+        }
+        return result;
     }
 
     @Override
-    public void delete(String tableName, Map<?,?> params) {
+    public void update(String tableName, String set, String where) throws SQLException {
+        try {
+            Connection();
 
+            System.out.println("Updating information in " + tableName + " table");
+            statement = connection.createStatement();
+
+            String SQL = "UPDATE " + tableName + " SET " + set + " WHERE " + where;
+
+            statement.executeUpdate(SQL);
+
+            System.out.println("Information updated successfully");
+
+        } catch (Exception e) {
+            System.out.println("Operation failed");
+            throw new RuntimeException(e);
+        } finally {
+            if (statement!=null){
+                statement.close();
+            }
+            if (connection!=null){
+                connection.close();
+            }
+        }
+    }
+
+    @Override
+    public void delete(String tableName) throws SQLException{
+        try {
+            Connection();
+
+            System.out.println("Deleting " + tableName + " table");
+            statement = connection.createStatement();
+
+            String SQL = "DROP TABLE " + tableName;
+
+            statement.executeUpdate(SQL);
+
+            System.out.println("Table successfully deleted...");
+
+        } catch (Exception e) {
+            System.out.println("Operation failed");
+            e.printStackTrace();
+        } finally {
+            if (statement!=null){
+                statement.close();
+            }
+            if (connection!=null){
+                connection.close();
+            }
+        }
     }
 
     private void Connection() throws ClassNotFoundException, SQLException {

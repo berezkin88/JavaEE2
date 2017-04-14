@@ -9,7 +9,7 @@ public interface DAOInterface {
 
     void createDatabase(String databaseName) throws SQLException;
     void createTableDevelopers2() throws SQLException;
-    List<?> read(String tableName);
-    void update(String tableName, Map<?,?> params);
-    void delete(String tableName, Map<?,?> params);
+    List<?> readAll(String tableName) throws SQLException;
+    void update(String tableName, String set, String where) throws SQLException;
+    void delete(String tableName) throws SQLException;
 }

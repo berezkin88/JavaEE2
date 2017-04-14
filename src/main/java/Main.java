@@ -9,7 +9,7 @@ public class Main {
         DAOImp daoImp = new DAOImp();
 
         try {
-            daoImp.createTableDevelopers2();
+            daoImp.delete("developers2");
         } catch (SQLException e) {
             e.printStackTrace();
         }
