@@ -1,3 +1,6 @@
+import Controllers_and_DAO.DAOImp;
+import Controllers_and_DAO.SkillsController;
+
 import java.sql.SQLException;
 
 /**
@@ -7,11 +10,13 @@ public class Main {
 
     public static void main(String[] args) {
         DAOImp daoImp = new DAOImp();
+        SkillsController skillsController = new SkillsController();
 
         try {
-            daoImp.delete("developers2");
+            skillsController.readAll().forEach(System.out::println);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 }

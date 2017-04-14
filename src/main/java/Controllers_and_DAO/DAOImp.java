@@ -1,7 +1,8 @@
+package Controllers_and_DAO;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Alexander on 08/04/2017.
@@ -15,7 +16,6 @@ public class DAOImp implements DAOInterface {
 
     Connection connection = null;
     Statement statement = null;
-    PreparedStatement preparedStatement = null;
 
     @Override
     public void createDatabase(String databaseName) throws SQLException {
@@ -51,7 +51,7 @@ public class DAOImp implements DAOInterface {
     }
 
     @Override
-    public void createTableDevelopers2() throws SQLException
+    public void createTable(String tableName, String params) throws SQLException
     {
         try {
             Connection();
@@ -59,19 +59,15 @@ public class DAOImp implements DAOInterface {
             System.out.println("Creating table in selected database...");
             statement = connection.createStatement();
 
-            String SQL = "CREATE TABLE developers2 " +
-                    "(id INT PRIMARY KEY not NULL, " +
-                    " name VARCHAR(50), " +
-                    " specialty VARCHAR (50), " +
-                    " salary INT not NULL)";
+            String SQL = "CREATE TABLE " + tableName + "(" + params + ")";
 
             statement.executeUpdate(SQL);
 
             System.out.println("Table successfully created...");
 
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             System.out.println("Operation failed");
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             if (statement!=null){
                 statement.close();
@@ -113,7 +109,7 @@ public class DAOImp implements DAOInterface {
         return result;
     }
 
-    public List<?> read(String rowName, String tableName) throws SQLException{
+    public List<?> read(String tableName, String params) throws SQLException{
         List<?> result = new ArrayList<>();
 
         try {
@@ -122,7 +118,7 @@ public class DAOImp implements DAOInterface {
             System.out.println("Reading from " + tableName + " table");;
             statement = connection.createStatement();
 
-            String SQL = "SELECT " + rowName + " FROM " + tableName;
+            String SQL = "SELECT * FROM " + tableName + " WHERE " + params;
 
             ResultSet resultSet = statement.executeQuery(SQL);
 
@@ -194,12 +190,11 @@ public class DAOImp implements DAOInterface {
         }
     }
 
-    private void Connection() throws ClassNotFoundException, SQLException {
+    public void Connection() throws ClassNotFoundException, SQLException {
         System.out.println("Registering JDBC driver...");
         Class.forName(JDBC_DRIVER);
 
         System.out.println("Connecting to DB...");
         connection = DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
-
     }
 }
